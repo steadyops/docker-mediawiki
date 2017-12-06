@@ -7,7 +7,7 @@ Parsoid is a prerequisite for Visual Editor, it runs locally on port 8000
 
 # How to use
 ```bash
-docker run --name mywiki -d -p 8080:80 mneimne/mediawiki
+docker run --name mywiki -d -p 8080:80 steadyops/docker-mediawiki
 ```
 Now open your browser and navigate to http://localhost:8080/ and follow the installation steps, don't forget to enable the visual editor extenion in the process.
 After you download LocalSettings.php file, copy it's contents then open your  container using this command `docker exec -it $(docker ps -qf name=mywiki) vi /var/www/html/LocalSettings.php`, paste the contents and then save.
