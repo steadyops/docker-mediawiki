@@ -40,9 +40,10 @@ RUN cd extensions \
 		&& tar -xzf VisualEditor-REL1_29-b655946.tar.gz
 
 # install parsoid, needed by media wiki to run the visual editor plugin
-RUN npm install -g parsoid && cp /usr/lib/node_modules/parsoid/config.example.yaml /usr/lib/node_modules/parsoid/config.yaml
+RUN npm install -g parsoid
 
 # add customer configuration for nginx and supervisord
+ADD server-templates/config.yaml /usr/lib/node_modules/parsoid
 ADD server-templates/nginx.conf /etc/nginx
 ADD server-templates/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
