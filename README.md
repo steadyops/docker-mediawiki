@@ -22,6 +22,7 @@ if ( $_SERVER['REMOTE_ADDR'] == '127.0.0.1' ) {
  $wgGroupPermissions['*']['read'] = true;
  $wgGroupPermissions['*']['edit'] = true;
 }
+ $wgDefaultUserOptions['visualeditor-enable'] = 1;
 ```
 
 # Notes
