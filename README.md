@@ -4,6 +4,7 @@ This images comes preconfigured with Nginx, Parsoid and Visual Editor.
 
 Parsoid is a prerequisite for Visual Editor, it runs locally on port 8000
 
+If you want to know how this image was created checkout the full guide [mediawiki docker visual editor](https://www.steadyops.com/blog/mediawiki-visual-editor-docker-image)
 
 # How to use
 ```bash
