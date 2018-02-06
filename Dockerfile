@@ -6,10 +6,10 @@ ENV PY_PIP_VERSION=8.1.2-r0
 ENV SUPERVISOR_VERSION=3.3.1
 
 # MediaWiki Vars
-ENV MEDIAWIKI_MAJOR_VERSION 1.29
-ENV MEDIAWIKI_BRANCH REL1_29
-ENV MEDIAWIKI_VERSION 1.29.2
-ENV MEDIAWIKI_SHA512 53c6ca82280938d1e3281aa296f44c86dcfbbdf82710b7de578e73e1ef3150db145e059c8c8208859bc437f7a7f7a13eed896be9d44fd364a0ee6d78893fbe86
+ENV MEDIAWIKI_MAJOR_VERSION 1.30
+ENV MEDIAWIKI_BRANCH REL1_30
+ENV MEDIAWIKI_VERSION 1.30.0
+ENV MEDIAWIKI_SHA512 ec4aeb08c18af0e52aaf99124d43cd357328221934d593d87f38da804a2f4a5b172a114659f87f6de58c2140ee05ae14ec6a270574f655e7780a950a51178643
 
 # install dependencies via apk
 RUN apk update && apk add -u python=$PYTHON_VERSION py-pip=$PY_PIP_VERSION libpng-dev nginx git nodejs
@@ -28,16 +28,15 @@ WORKDIR /var/www/html/
 
 RUN mkdir /var/www/data && chown www-data:www-data /var/www/data
 
-# download MEDIAWIKI
-RUN curl -fSL "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz" -o mediawiki.tar.gz \
+RUN  curl -fSL "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz" -o mediawiki.tar.gz \
 	&& echo "${MEDIAWIKI_SHA512} *mediawiki.tar.gz" | sha512sum -c - \
 	&& tar -xz --strip-components=1 -f mediawiki.tar.gz \
 	&& rm mediawiki.tar.gz \
   && chown -R www-data:www-data extensions skins cache images
 
 RUN cd extensions \
-		&& wget https://extdist.wmflabs.org/dist/extensions/VisualEditor-REL1_29-b655946.tar.gz \
-		&& tar -xzf VisualEditor-REL1_29-b655946.tar.gz
+		&& wget "https://extdist.wmflabs.org/dist/extensions/VisualEditor-${MEDIAWIKI_BRANCH}-61f161a.tar.gz" \
+		&& tar -xzf VisualEditor-REL1_30-61f161a.tar.gz
 
 # install parsoid, needed by media wiki to run the visual editor plugin
 RUN npm install -g parsoid

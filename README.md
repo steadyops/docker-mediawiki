@@ -23,6 +23,16 @@ if ( $_SERVER['REMOTE_ADDR'] == '127.0.0.1' ) {
  $wgGroupPermissions['*']['edit'] = true;
 }
 ```
+For MediaWiki 1.30 with the latest compatible parsoid add the below to LocalSettings.php ([source](https://www.mediawiki.org/wiki/Topic:Trpwvcu1lk3k3omr))
+
+```php
+$wgVirtualRestConfig['modules']['parsoid'] = array(
+      // URL to the Parsoid instance
+      'url' => 'http://localhost:8000',
+      // Parsoid "domain", see below (optional)
+      'domain' => 'localhost',
+);
+```
 
 # Notes
 a special directory has been created with read/write access to place your database file if you chose Sqlite, just fill in the following path when asked for it `/var/www/data`
