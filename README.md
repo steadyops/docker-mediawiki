@@ -4,6 +4,7 @@ This images comes preconfigured with Nginx, Parsoid and Visual Editor.
 
 Parsoid is a prerequisite for Visual Editor, it runs locally on port 8000
 
+If you want to know how this image was created checkout the full guide [mediawiki docker visual editor](https://www.steadyops.com/blog/mediawiki-visual-editor-docker-image)
 
 # How to use
 ```bash
@@ -22,6 +23,7 @@ if ( $_SERVER['REMOTE_ADDR'] == '127.0.0.1' ) {
  $wgGroupPermissions['*']['read'] = true;
  $wgGroupPermissions['*']['edit'] = true;
 }
+ $wgDefaultUserOptions['visualeditor-enable'] = 1;
 ```
 For MediaWiki 1.30 with the latest compatible parsoid add the below to LocalSettings.php ([source](https://www.mediawiki.org/wiki/Topic:Trpwvcu1lk3k3omr))
 
